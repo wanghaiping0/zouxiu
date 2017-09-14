@@ -141,9 +141,59 @@ $(window).load(function(){
 		var html = cookieInfo[0].count;
 		$("#red").html(html);
 	}
+	
+	
 	$(".buy").click(function(){
-		html++;
-		$("#red").html(html);
+		var startPoint = {
+		x : $(".buy").offset().left + $(".buy img").width()/2,
+		y : $(".buy").offset().top
+	}
+	
+	
+	//终点坐标
+	 var endPoint = {
+		x : $("#nav-right div").offset().left + 20,
+		y : $("#nav-right div").offset().top
+	}
+	 //最高点 
+	var topPoint = {
+		x : endPoint.x - 100 ,
+		y : endPoint.y - 80
+	}
+	//根据三点坐标确定抛物线的系数
+	var a = ((startPoint.y - endPoint.y) * (startPoint.x - topPoint.x) - (startPoint.y - topPoint.y) * (startPoint.x - endPoint.x)) / ((startPoint.x * startPoint.x - endPoint.x * endPoint.x) * (startPoint.x - topPoint.x)-(startPoint.x * startPoint.x - topPoint.x * topPoint.x) * (startPoint.x - endPoint.x));  
+				
+	var b = ((endPoint.y - startPoint.y) - a * (endPoint.x * endPoint.x - startPoint.x * startPoint.x)) / (endPoint.x - startPoint.x);  
+				
+	var c = startPoint.y - a * startPoint.x * startPoint.x - b * startPoint.x;
+	//创建商品
+	//获取商品起始点坐标
+	var x = startPoint.x;
+	var y = startPoint.y;
+	var good = document.createElement("div");
+	good.style.position = "absolute";
+	good.style.left = x + "px";
+	good.style.top = y +"px";
+	good.style.zIndex = 333;
+	document.body.appendChild(good);
+	good.style.width = "20px";
+	good.style.height = "20px";
+	good.style.background = "orange";
+	//商品移动  根据抛物线轨迹移动
+	var timer = setInterval(function(){
+		x = x + 5;
+		y = a*x*x + b*x + c;
+		good.style.left = x + "px";
+		good.style.top = y + "px";
+		if( x > endPoint.x ){
+			good.remove();
+			clearInterval( timer );
+			$("#nav-right div").html(++html)
+		}
+	},30)
+		
+		//html++;
+		//$("#red").html(html);
 		var str = location.href;
 		var arr = str.split("?")[1];
 		var pid = arr.split("&")[0].split("=")[1];
@@ -179,67 +229,6 @@ $(window).load(function(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-var sum = 0;
-$("#right-bottom ol li").eq(0).click(function(){
-	sum++;
-	$("#nav-right div").html(sum)
-	//起点坐标
-	/*var startPoint = {
-		x : $("#right-bottom ol li").eq(0).offset().Left + $("#right-bottom ol li").eq(0).width/2,
-		y : $("#right-bottom ol li").eq(0).offset().top
-	}
-	//终点坐标
-	 var endPoint = {
-		x : $("#nav-right div").offset().left + 20,
-		y : $("#nav-right div").offset().top
-	}
-	 //最高点 
-	var topPoint = {
-		x : endPoint.x - 100 ,
-		y : endPoint.y - 80
-	}
-	//根据三点坐标确定抛物线的系数
-	var a = ((startPoint.y - endPoint.y) * (startPoint.x - topPoint.x) - (startPoint.y - topPoint.y) * (startPoint.x - endPoint.x)) / ((startPoint.x * startPoint.x - endPoint.x * endPoint.x) * (startPoint.x - topPoint.x)-(startPoint.x * startPoint.x - topPoint.x * topPoint.x) * (startPoint.x - endPoint.x));  
-				
-	var b = ((endPoint.y - startPoint.y) - a * (endPoint.x * endPoint.x - startPoint.x * startPoint.x)) / (endPoint.x - startPoint.x);  
-				
-	var c = startPoint.y - a * startPoint.x * startPoint.x - b * startPoint.x;
-	//创建商品
-	//获取商品起始点坐标
-	var x = startPoint.x;
-	var y = startPoint.y;
-	var good = document.createElement("div");
-	good.style.position = "absolute";
-	good.style.left = x + "px";
-	good.style.top = y +"px";
-	document.body.appendChild(good);
-	good.style.width = "20px";
-	good.style.height = "20px";
-	good.style.background = "orange";
-	//商品移动  根据抛物线轨迹移动
-	var timer = setInterval(function(){
-		x = x + 5;
-		y = a*x*x + b*x + c;
-		good.style.left = x + "px";
-		good.style.top = y + "px";
-		if( x > endPoint.x ){
-			good.remove();
-			clearInterval( timer );
-			$("#nav-right div").html(++sum)
-		}
-	},30)*/
-})
 
 
 $("#attach>div").find("a").mouseenter(function(){
