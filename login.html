@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="login.css" type="text/css" rel="stylesheet" /> 
+		<script src="jquery-1.11.1.min.js"></script>
+		<script src="cookie.js"></script>
+	</head>
+	<body>
+		<div id="header">
+			<a href="main.html"><img src="images/logo_mini.png" /></a>
+		</div>
+		<div id="main">
+			<div id="login">
+				<ul id="log">
+					<li><a>注册</a></li>
+					<li><a>登陆</a></li>
+				</ul>
+				<div id="message">
+					<input type="text"  id="uname" placeHolder="请输入用户名" / style="width:300px;height:34px;margin-bottom: 5px;"><span id="s1"></span><br>
+					<input type="password" id="pwd" placeHolder="请输入密码" style="width:300px;height:34px;margin-bottom: 5px;"/><span id="s2"></span><br>
+					<input type="password" id="qpwd" placeHolder="请输入密码" style="width:300px;height:34px;margin-bottom: 20px;"/><span id="s3"></span><br>
+					<a id="a2">注册</a>
+				</div>
+				<div id="password">
+					<input type="text" id="uname1" placeHolder="手机号/邮箱/用户名" / style="width:300px;height:34px;margin-bottom: 20px;"><span id="s4"></span><br>
+					<input type="text" id="upwd" placeHolder="密码" style="width:300px;height:34px"/><span id="s5"></span>
+					<p><a id="a7">找回密码</a> | <a id="a8">注册账号</a></p>
+					<a id="a9">登陆</a>
+				</div>
+				<p><img src="images/3.jpg" /></p>
+				<ul id="mark">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<div id="c1">
+					<a id="a3"></a>
+					<a id="a4"></a>
+				</div>
+				
+			</div>
+			<div id="togg">
+				<h5>手机扫码登陆</h5>
+				<img src="images/weixinQr.jpg" />
+				<p>打开走秀APP，扫一扫登陆</p>
+				<div id="c2">
+					<a id="a5"></a>
+					<a id="a6"></a>
+				</div>
+				
+			</div>
+		</div>
+		<div id=footer>
+			<p><a href="">关于走秀</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">About us</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">媒体报道</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">品牌招商</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">加入走秀</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">网站地图</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">品牌大全</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">邮件订阅</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="">WAP站点</a></p>
+			<p id="pp">Copyright&copy;2008-2017&nbsp;<a href="">Xiu.com</a>深圳走秀网络科技有限公司版权所有&nbsp;&nbsp;&nbsp;粤ICP备07502993h号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">粤公网安备44030402000804</a>
+			<img src="images/wab.png" />
+		</div>
+	</body>
+</html>
+<script>
+	$("#log li").click(function(){
+		var index = $(this).index();
+		$(this).css("border-bottom","2px #464646 solid").siblings().css("border-bottom","none");
+		$("#login>div").eq(index).show().siblings("div").hide();
+	})
+	var flagName=null;
+	$("#uname").blur(function(){
+		var reg1 = /^\w{6,12}$/
+		var str1 = $("#uname").val();
+		if(reg1.test(str1)){
+			var cookieInfo = getCookie("uname");
+			if( cookieInfo.length != 0 ){
+				arr = cookieInfo;
+				for(var i in arr){
+					if($(this).val() == arr[i].name){
+						$("#s1").html("用户名重复").css({"color":"red","font-size":10});
+						break;
+					}else{
+						$("#s1").css("display","none");
+						flagName = true;
+					}
+				}
+			}else{
+				$("#s1").css("display","none")
+				flagName=true;
+			}
+		}else{
+			checkName=false;
+			$("#s1").html("用户名重复或不符合要求").css({"color":"red","font-size":10})
+		}
+	})
+	var flagPwd = null;
+	$("#pwd").blur(function(){
+		var reg2 = /^\w{6,12}$/
+		var str2 = $("#pwd").val();
+		if(!reg2.test(str2)){
+			flagPwd = false;
+			$("#s2").html("请输入正确的密码").css({"color":"red","font-size":10})
+		}else{
+			flagPwd = true;
+			$("#s2").css("display","none")
+		}
+	})
+	var flagQpwd = null;
+	$("#qpwd").blur(function(){
+		var str2 = $("#pwd").val();
+		var str3 = $("#qpwd").val();
+		if(str3 != str2){
+			flagQpwd = false;
+			$("#s3").html("两次输入的密码不一致,请重新输入密码").css({"color":"red","font-size":10});
+		}else{
+			flagQpwd = true;
+			$("#s3").css("display","none")
+		}
+	})
+	
+	$("#a2").click(function(){
+		var arr=[]
+		var flag = true;
+		if(flagName & flagPwd & flagQpwd){
+			var _json={
+				"name" : $("#uname").val(),
+				"pwd" : $("#pwd").val()
+			}
+			var cookieInfo = getCookie("uname");
+			if( cookieInfo.length != 0 ){//表示cookie中有数据
+				arr = cookieInfo;
+				for(var i in arr){
+					if(_json.name == arr[i].name){
+						alert("用户名重复")
+						flag = false;
+						break;
+					}
+				}
+			}
+			if(flag){
+				arr.push(_json);
+				setCookie("uname",JSON.stringify(arr));
+				alert("注册成功")
+				$("#message").css("display","none");
+				$("#log").find("li").eq(0).css("border","none");
+				$("#password").css("display","block");
+				$("#log").find("li").eq(1).css("border-bottom","2px #464646 solid");
+			}
+		}
+	})
+	
+	$("#uname1").blur(function(){
+		var reg3 = /^\w{6,12}$/;
+		var str3 = $("#uname1").val();
+		if(reg3.test(str3)){
+			$("#s4").html("")
+		}else{
+			$("#s4").html("用户名格式有误").css({"color":"red","font-size":10});
+		}
+	})
+	$("#upwd").blur(function(){
+		var reg4 = /^\w{6,12}$/;
+		var str4 = $("#upwd").val();
+		if(reg4.test(str4)){
+			$("#s5").html("")
+		}else{
+			$("#s5").html("密码有误").css({"color":"red","font-size":10});
+		}
+	})
+	$("#a9").click(function(){
+		var arr=getCookie("uname");
+		for(var i in arr){
+			if($("#uname1").val()==arr[i].name&&$("#upwd").val()==arr[i].pwd){
+				alert("登陆成功")
+				location.href="main.html";
+			}else{
+				alert("密码或用户名有误");
+			}
+		}
+	})
+	
+	$("#a8").click(function(){
+		$("#message").css("display","block");
+		$("#password").css("display","none");
+	})
+	$("#c1 a").click(function(){
+		$("#login").hide();
+		$("#togg").show();
+	})
+	$("#c2 a").click(function(){
+		$("#login").show();
+		$("#togg").hide();
+	})
+</script>

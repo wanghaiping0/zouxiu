@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="shoppingCart.css" type="text/css" rel="stylesheet"  />
+		<script src="jquery-1.11.1.min.js"></script>
+	</head>
+	<body>
+		<div id="header">
+			<img src="images/s_05.png" />
+			<div id="right">
+				<p>客服热线(免长途费)：<span>400-888-4499</span><a href="">在线客服</a></p>
+				<p>您好!欢迎光临走秀网! [<a href="login.html">登陆/注册</a>] | <a href="">帮助中心</a></p>
+			</div>
+		</div>
+		<div id="liucheng"><img src="images/liucheng.jpg"/></div>
+		<div id="card">
+			<div id="items">
+				<div id="qx"><input type="checkbox" name="qx" class="qxxx" />全选</div>
+				<ul>
+					<li>商品</li>
+					<li>购买价（元）</li>
+					<li>数量</li>
+					<li>操作</li>
+				</ul>
+			</div>
+			<div id="dd">购物袋暂没有商品，现在就去<a href="main.html">挑选自己喜欢的商品</a>.
+				<!--<div id="good">
+					<p id="choose"><input type="checkbox" /></p>	
+					<dl>
+						<dt><img src="images1/1.jpg" id="sss"/></dt>
+						<dd>
+							<h6>Jeffrey Campbell</h6>
+							<p>早春秀场推荐单鞋达人热荐方跟单鞋</p>
+							<span>颜色 : 黑色 尺码 : 6</span>
+						</dd>
+					</dl>
+					<p id="price">￥1110</p>
+					<div id="math">
+						<p id="down"></p>
+						<p id="s1">1</p>
+						<p id="up"></p>
+					</div>
+					<p id="del">
+						<i>移至收藏夹</i>
+						<i>删除</i>
+					</p>
+				</div>-->
+			</div>
+			
+		</div>
+		<div id="commit">
+			<p><input type="checkbox" name="qx" class="qxxx"/>全选</p>
+			<ul>
+				<li>删除</li>
+				<li>清除失效商品</li>
+				<li>移至收藏夹</li>
+			</ul>
+			<div id="total">
+				<p>已选商品<span style="color:red">0</span>件&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				总计<span style="color:#aaa">（不含运费）</span>：￥<span>0</span></p>
+			</div>
+			<a><img src="images/s_shop1.jpg" /></a>
+		</div>
+		
+		<div id="check">
+			<a href=""><img src="images/s_shop1.jpg" /></a>
+			<p>
+				请<a href="login.html">登陆</a>后查看您收藏的商品
+			</p>
+			
+		</div>
+		<div id=footer>
+			<p id="pp">Copyright&copy;2008-2017&nbsp;<a href="">Xiu.com</a>深圳走秀网络科技有限公司版权所有&nbsp&nbsp&nbsp粤ICP备07502993h号&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="">粤公网安备44030402000804</a>
+			<img src="images/wab.png" />
+		</div>
+	</body>
+</html>
+<script src="cookie.js"></script>
+<script>
+	var arr = getCookie("key");
+	var str ="";
+	for(var i in arr){
+		str += `<div id="good">
+					<p id="choose"><input type="checkbox" class="ck"/></p>	
+					<dl>
+						<dt><img src="${arr[i].src}"/></dt>
+						<dd>
+							<h6>Jeffrey Campbell</h6>
+							<p>早春秀场推荐单鞋达人热荐方跟单鞋</p>
+							<span>颜色 : 黑色 尺码 : 6</span>
+							<span class="idd">${arr[i].id}</span>
+						</dd>
+					</dl>
+					<p id="price">1110</p>
+					<div id="math">
+						<p class="down"></p>
+						<p id="s1">${arr[i].count}</p>
+						<p class="up"></p>
+					</div>
+					<p id="del" class="del">
+						<em>移至收藏夹</em>
+						<i>删除</i>
+					</p>
+				</div>`
+				
+	}
+	$("#dd").html(str);
+	$(".down").click(function(){
+		var count = $(this).next().html();
+		var id = $(this).parent().parent().find("dd span").eq(1).html();
+		var ssrc = $(this).parent().parent().find("dt img").attr("src");
+		for(var i in arr){
+			if(id == arr[i].id && ssrc == arr[i].src){
+				count--;
+				if(count <= 0){
+					return;
+				}
+			}
+		}
+		//console.log(id)
+		setCookie("key",JSON.stringify(arr));
+		$(this).next().html(count);
+		jiesuan();
+	})
+	$(".up").click(function(){
+		var num = $(this).prev().html();
+		var id = $(this).parent().parent().find("dd span").eq(1).html();
+		var ssrc = $(this).parent().parent().find("dt img").attr("src");
+		for(var i in arr){
+			if(id == arr[i].id && ssrc == arr[i].src){
+				num++;
+			}
+		}
+		setCookie("key",JSON.stringify(arr));
+		$(this).prev().html(num);
+		jiesuan();
+	})
+	//删除
+	$(".del i").click(function(){
+		var id = $(this).parent().parent().find("dd span").eq(1).html();
+		
+		var ssrc = $(this).parent().parent().find("dt img").attr("src");
+		for(var i in arr){
+			if(id == arr[i].id){
+				arr.splice(i,1);
+				setCookie("key",JSON.stringify(arr));
+				$(this).parent().parent().remove();
+			}
+		}
+		if(arr.length < 1){
+			$("#card").html(`购物袋暂没有商品，现在就去<a href="main.html">挑选自己喜欢的商品</a>.`)
+			$("#items").css("display","none")
+		}
+	})
+	$(".ck").click(function(){
+		jiesuan();
+	})
+	function jiesuan(){
+		var money = 0;
+		var sum = 0;
+		$(".ck:checked").each(function(){
+			var sum1 = parseInt($(this).parent().parent().find("#s1").html());
+			var money1 = parseInt($(this).parent().parent().find("#price").html());
+			sum += parseInt($(this).parent().parent().find("#s1").html());
+			money += sum1*money1
+			console.log(sum)
+			console.log(money)
+		})
+		$("#total span").eq(0).html(sum);
+		$("#total span").eq(2).html(money);
+	}
+	$(".qxxx").click(function(){
+		$(".ck").prop("checked",$(this).prop("checked"));
+		jiesuan();
+	})
+	$("#commit>a").click(function(){
+		if($("#dd").html() == ""){
+			alert("购物车中没有商品，请再去逛逛")
+		}else{
+			location.href = "jiesuan.html";
+		}
+	})
+</script>

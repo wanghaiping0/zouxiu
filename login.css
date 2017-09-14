@@ -1,0 +1,256 @@
+@charset "utf-8";
+/* CSS Document */
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }
+fieldset, img { border:none; }
+img{display: block;}
+address, caption, cite, code, dfn, th, var { font-style:normal; font-weight:normal; }
+ul, ol { list-style:none;} 
+a{ text-decoration: none;}
+#header{
+	height:60px;
+	margin:0 auto;
+}
+#header a {
+	display: block;
+	width:194px;
+	height: 30px;
+	margin-top:15px;
+	margin-left: 40px;
+}
+#main{
+	height: 700px;
+	margin:0 auto;
+	border-top: 1px #e5e5e5 solid;
+	background:#f7f2ec;
+	background-image:url("images/login_bg.jpg");
+	background-repeat: no-repeat;
+	background-position:center ;
+	position: relative;
+}
+#login{
+	width:420px;
+	height: 560px;
+	position: absolute;
+	top:70px;
+	right:70px;
+	border:1px #d8d8d8 solid;
+	box-shadow: 2px 4px 6px #e0ddda;
+	background: #fff;
+}
+#login ul{
+	height:52px;
+}
+#login ul li{
+	float:left;
+}
+#login ul li a{
+	box-sizing: border-box;
+	display: block;
+	width:210px;
+	height:52px;
+	text-align: center;
+	line-height: 52px;
+	color: #afafaf;
+	font-size:18px;
+	background:#f7f7f9;	
+}
+#message{
+	width:302px;
+	height:220px;
+	position:absolute ;
+	top:100px;
+	left:59px;
+}
+#message a{
+	display: block;
+}
+#message #a1{
+	box-sizing: border-box;
+	width:48px;
+	height:16px;
+	margin:28px 0 28px 252px;
+	font-size: 12px;
+	color: #464646;
+	text-align: right;
+}
+#message #a1:hover{
+	border-bottom: 1px #464646 solid;
+}
+#message #a2{
+	width:302px;
+	height:40px;
+	background: #d2041f;
+	border-radius: 20px;
+	text-align:center;
+	line-height: 40px;
+	font-size: 14px;
+	color: #fff;
+}
+#password{
+	width:302px;
+	height:220px;
+	position: absolute;
+	top:100px;
+	left:59px;
+	display: none;
+}
+#password p{
+	width:302px;
+	height: 16px;
+	text-align: right;
+	margin:20px auto;
+}
+#a7,#a8{
+	box-sizing: border-box;
+	height:16px;
+	font-size: 12px;
+	color: #464646;
+}
+#a7:hover,#a8:hover{
+	text-decoration: underline;
+}
+#a9{
+	display: block;
+	width:302px;
+	height:40px;
+	background: #d2041f;
+	border-radius: 20px;
+	text-align:center;
+	line-height: 40px;
+	font-size: 14px;
+	color: #fff;
+}
+#login>p{
+	width:300px;
+	height: 30px;
+	margin:280px auto 15px;
+	
+}
+#mark{
+	display: flex;
+	justify-content: space-around;
+	width:302px;
+	height: 30px;
+	margin:0 auto;
+}
+#mark li {
+	display: block;
+	width:30px;
+	height: 30px;
+}
+#mark li:nth-child(1){
+	background:url(images/login_sprite.png) no-repeat;
+}
+#mark li:nth-child(2){
+	background:url(images/login_sprite.png) no-repeat -30px 0;
+}
+#mark li:nth-child(3){
+	background:url(images/login_sprite.png) no-repeat -60px 0;
+}
+#mark li:nth-child(4){
+	background:url(images/login_sprite.png) no-repeat -90px 0;
+}
+#mark li:nth-child(5){
+	background:url(images/login_sprite.png) no-repeat -120px 0;
+}
+
+#a3{
+	width:84px;
+	height: 25px;
+	position: absolute;
+	right:57px;
+	bottom:12px;
+	background:url(images/login_sprite.png) no-repeat 0 -360px;
+}
+
+#a4{
+	width:60px;
+	height: 60px;
+	position: absolute;
+	right: 0;
+	bottom:0;
+	background:url(images/login_sprite.png) no-repeat 0 -400px;
+}
+
+#togg{
+	width: 420px;
+	height: 450px;
+	background: #fff;
+	position: absolute;
+	bottom: 70px;
+	right: 70px;
+	display: none;
+}
+#togg h5{
+	width:90px;
+	height:36px
+	font-size: 18px;
+	text-align: center;
+	line-height: 36px;
+	margin-top:30px;
+	margin-left: 30px;
+}
+#togg img{
+	display: block;
+	position: absolute;
+	top:120px;
+	left: 130px;
+}
+#togg p{
+	width:420px;
+	height: 20px;
+	font-size: 14px;
+	text-align: center;
+	line-height: 20px;
+	margin-top:240px;
+}
+#c2{
+	position: absolute;
+	bottom:0;
+	right: 0;
+}
+#a5{
+	width:84px;
+	height: 25px;
+	position: absolute;
+	right:57px;
+	bottom:12px;
+	background:url(images/login_sprite.png) no-repeat -100px -360px;
+}
+#a6{
+	width:60px;
+	height: 60px;
+	position: absolute;
+	right: 0;
+	bottom:0;
+	background:url(images/login_sprite.png) no-repeat -70px -400px;
+}
+#footer{
+	width:1200px;
+	height: 110px;
+	margin:0 auto;
+	position: relative;
+}
+#footer p{
+	width:1000px;
+	margin:0 auto;
+	text-align: center;
+	font-size: 14px;
+	color: #464646;
+}
+#footer p:nth-child(1){
+	margin-top:30px;
+	margin-bottom: 16px;
+}
+#footer p:nth-child(1) a:hover{
+	border-bottom: 1px #464646 solid;
+}
+#footer p:nth-child(2),#footer p:nth-child(2) a {
+	color:#999;
+}
+#footer img{
+	display: block;
+	position: absolute;
+	top:35px;
+	left:790px;
+}

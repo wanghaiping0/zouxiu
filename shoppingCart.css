@@ -1,0 +1,292 @@
+@charset "utf-8";
+/* CSS Document */
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img ,a{ margin:0; padding:0; }
+fieldset, img { border:none; }
+img{display: block;}
+address, caption, cite, code, dfn, th, var { font-style:normal; font-weight:normal; }
+ul, ol { list-style:none;} 
+a{ text-decoration: none;}
+#header {
+	width:950px;
+	height: 73px;
+	border-bottom: 1px #000000 solid;
+	margin:0 auto;
+	position: relative;
+}
+#header img{
+	display: block;
+	position: absolute;
+	top:10px;
+	left: 12px;
+}
+#right{
+	float: right;
+}
+#right p:nth-child(1){
+	margin-bottom: 20px;
+	margin-top:12px;
+}
+#right p{
+	font-size: 12px;
+	color: #151515;
+	text-align:right ;
+}
+#right p span{
+	font-size: 12px;
+	color: #f26552;
+}
+#right p a{
+	font-size: 12px;
+	color:#5b5b5b;
+}
+#liucheng{
+	width:950px;
+	height: 35px;
+	margin:15px auto;
+}
+#card{
+	width:948px;
+	min-height:80px;
+	margin:0 auto;
+	background:#f6f6f6;
+	text-align: center;
+	line-height: 80px;
+	font-weight: bold;
+	font-size:14px;
+	margin-bottom: 20px;
+	border:1px #d6d3d3 solid;
+}
+#card a{
+	color:red;
+	text-decoration: underline;
+}
+#items {
+	width:950px;
+	height: 32px;
+}
+#items #qx{
+	height: 32px;
+	width:50px;
+	float: left;
+	line-height: 32px;
+}
+#items ul{
+	width:800px;
+	height: 32px;
+	float: right;
+	display: flex;
+	justify-content: space-around;
+}
+#items ul li{
+	display: block;
+	height: 32px;
+	line-height: 32px;
+}
+#good{
+	width:948px;
+	height: 120px;
+	background:#fff4e8;
+	border-top:1px #d6d3d3 solid; 
+	border-bottom:1px #d6d3d3 solid; 
+	line-height: 120px;
+	position: relative;
+	margin: 10px auto;
+}
+#choose{
+	float:left;
+}
+#good dl{
+	float:left;
+	margin-left: 80px;
+	padding-top:22px;
+	line-height:120px;
+}
+#good dt img{
+	width:50px;
+}
+#good dl dd,#good dl dt{
+	height:98px;
+	float: left;
+}
+#good dl dd{
+	margin-left: 20px;
+}
+#good dl dd h6{
+	font-size: 12px;
+	color:#be6b00;
+	line-height: 20px;
+}
+#good dl dd p{
+	font-size: 12px;
+	color:#000;
+	line-height: 20px;
+}
+#good dl dd span{
+	display: block;
+	font-size: 12px;
+	color:#5b5b5b;
+	line-height: 20px;
+}
+#price{
+	position: absolute;
+	width:50px;
+	height: 120px;
+	line-height: 120px;
+	left:420px;
+	top:0
+}
+#math {
+	display: flex;
+	justify-content: space-around;
+	width:120px;
+	height: 75px;
+	position: absolute;
+	left:615px;
+	padding-top:45px
+}
+#math .down,#math .up{
+	width:12px;
+	height:12px;
+	overflow: hidden;
+}
+#math .down {
+	background:url("images/s_shop1.jpg") no-repeat -238px -260px;
+	margin-top:5px;
+}
+#math .up {
+	background:url("images/s_shop1.jpg") no-repeat -238px -280px;
+	margin-top:5px;
+}
+#math #s1{
+	width:30px;
+	height:16px;
+	line-height: 16px;
+	border: 1px #ccc solid;
+	font-size: 12px;
+}
+#del{
+	width:70px;
+	height: 120px;
+	float: right;
+	margin-right:50px;
+}
+#del i{
+	width:70px;
+	height:20px;
+	font-size:12px;
+	text-align: center;
+	display: block;
+	line-height:20px;
+	font-style: normal;
+}
+#del em{
+	display: block;
+	line-height: 20px;
+	width:70px;
+	height: 20px;
+	margin-top: 30px;
+	font-style: normal;
+	font-size: 12px;
+}
+#commit{
+	width:948px;
+	height:60px;
+	margin:10px auto;
+	border: 1px #ccc solid;
+	
+}
+#commit>p{
+	width:70px;
+	height: 60px;
+	float: left;
+	line-height: 60px;
+	font-size: 12px;
+}
+#commit>ul{
+	display: flex;
+	justify-content: space-around;
+	width:290px;
+	height: 60px;
+	float:left;
+	margin-left: 15px;
+}
+#commit>ul li{
+	line-height: 60px;
+	font-size: 12px;
+}
+#total{
+	width: 350px;
+	height: 60px;
+	float: left;
+	line-height: 60px;
+	font-size: 12px;
+	margin-left: 25px;
+}
+#commit>a{
+	width:120px;
+	height: 50px;
+	display: block;
+	float:right;
+	margin-right:10px ;
+	position: relative;
+	overflow: hidden;
+}
+#commit>a img{
+	position: absolute;
+	top:-175px;
+	left:-105px;
+}
+#check{
+	width:950px;
+	height:28px;
+	margin:0 auto;
+	overflow: hidden;
+	position: relative;
+}
+
+#check>a{
+	width:170px;
+	height: 28px;
+	display: block;
+	position: absolute;
+	top:0;
+	left:0;
+	overflow: hidden;
+}
+#check img{
+	position: absolute;
+	top:-260px;
+	left:0;
+}
+#check p{
+	height: 28px;
+	line-height: 28px;
+	padding-left: 175px;
+	font-size:12px;
+	color: #5b5b5b;
+}
+#check p a{
+	font-size: 12px;
+	color: #ff6633;
+}
+#footer{
+	width:950px;
+	height: 110px;
+	margin:0 auto;
+	position: relative;
+	margin-top: 20px;
+	border-top:1px #999999 solid;
+}
+#footer p{
+	width:950px;
+	text-align: center;
+	margin-top:50px;
+	font-size: 14px;
+	color: #464646;
+}
+#footer img{
+	display: block;
+	position: absolute;
+	top:48px;
+	left:665px;
+}
